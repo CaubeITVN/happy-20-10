@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Gửi em · 20/10 💗</title>
+  <meta name="description" content="Một hòn đảo nhỏ dành tặng em nhân ngày 20/10">
+  <meta name="theme-color" content="#ffd9e6">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Dancing+Script:wght@600;700&family=Quicksand:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <canvas id="scene" aria-label="Hòn đảo 3D với hộp quà, trái tim và hai chú gấu"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <!-- Màn hình chờ -->
+  <div id="loader" class="loader">
+    <div class="loader-heart">💗</div>
+    <p id="loader-text" class="loader-text">Đang gói quà...</p>
+  </div>
+  <script>
+    setTimeout(function () {
+      var loader = document.getElementById('loader');
+      if (loader && !loader.classList.contains('done')) {
+        document.getElementById('loader-text').textContent = 'Mạng hơi chậm, đợi xíu hoặc tải lại trang nha 💗';
+      }
+    }, 20000);
+  </script>
+
+  <!-- Tiêu đề + bộ đếm -->
+  <header id="title" class="title">
+    <h1 id="title-main"></h1>
+    <p id="title-sub"></p>
+    <div id="counter" class="counter"><span class="counter-heart">💗</span> <span id="count">0</span>/<span id="total">8</span></div>
+  </header>
+
+  <!-- Ngón tay chỉ vào hộp quà -->
+  <div id="tap-cue" class="tap-cue" aria-hidden="true"><span>👆</span></div>
+
+  <!-- Bong bóng thoại của gấu -->
+  <div id="bubbles" class="bubbles" aria-live="polite"></div>
+
+  <!-- Thanh dưới: gợi ý + nút -->
+  <div id="bottom-bar" class="bottom-bar">
+    <p id="hint" class="hint"></p>
+    <button id="btn-music" class="icon-btn" type="button" aria-label="Bật/tắt nhạc" aria-pressed="true">🎵</button>
+    <button id="btn-letter" class="icon-btn" type="button" aria-label="Đọc thư">💌</button>
+  </div>
+
+  <!-- Thẻ lý do -->
+  <div id="reason" class="reason" role="status">
+    <p id="reason-num" class="reason-num"></p>
+    <p id="reason-text" class="reason-text"></p>
+  </div>
+
+  <!-- Lá thư -->
+  <div id="letter" class="modal letter">
+    <div id="envelope" class="envelope" role="button" tabindex="0" aria-label="Mở thư">
+      <div class="env-back"></div>
+      <div class="env-letter"><span id="env-to"></span></div>
+      <div class="env-front"></div>
+      <div class="env-flap"></div>
+      <div class="env-seal">💗</div>
+    </div>
+    <article id="paper" class="paper" role="dialog" aria-modal="true" aria-labelledby="letter-greeting">
+      <div class="tape" aria-hidden="true"></div>
+      <div class="stamp" aria-hidden="true">💌</div>
+      <h2 id="letter-greeting" class="letter-greeting"></h2>
+      <div id="letter-body" class="letter-body"></div>
+      <p id="letter-sign" class="letter-sign"></p>
+      <p id="letter-date" class="letter-date"></p>
+      <p class="skip-hint">chạm vào thư để hiện hết chữ</p>
+      <div class="letter-actions">
+        <button id="letter-close" class="pill-btn" type="button">Đóng thư 💗</button>
+      </div>
+    </article>
+  </div>
+
+  <!-- Xem ảnh polaroid -->
+  <div id="lightbox" class="modal lightbox" role="dialog" aria-modal="true" aria-label="Ảnh">
+    <figure>
+      <img id="lightbox-img" alt="">
+      <button id="lightbox-close" class="pill-btn" type="button">Đóng</button>
+    </figure>
+  </div>
+
+  <!-- Bất ngờ cuối -->
+  <div id="finale" class="modal finale" role="dialog" aria-modal="true" aria-labelledby="finale-title">
+    <div class="finale-card">
+      <h2 id="finale-title"></h2>
+      <p id="finale-sub"></p>
+      <div class="finale-actions">
+        <button id="finale-again" class="pill-btn" type="button"></button>
+        <button id="finale-stay" class="pill-btn ghost" type="button"></button>
+      </div>
+    </div>
+  </div>
+
+  <noscript><p class="noscript">Bật JavaScript để mở quà nha 💗</p></noscript>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
